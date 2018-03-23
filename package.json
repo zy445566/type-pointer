@@ -1,0 +1,30 @@
+{
+  "name": "type-pointer",
+  "version": "1.0.0",
+  "description": "nodejs pointer",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zy445566/type-pointer.git"
+  },
+  "keywords": [
+    "point",
+    "pointer",
+    "node",
+    "type-pointer",
+    "type"
+  ],
+  "author": "zy445566",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zy445566/type-pointer/issues"
+  },
+  "homepage": "https://github.com/zy445566/type-pointer#readme",
+  "dependencies": {
+    "bindings": "^1.3.0",
+    "nan": "^2.10.0"
+  }
+}
