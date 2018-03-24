@@ -6,7 +6,8 @@ void getObjectAddr(const Nan::FunctionCallbackInfo<v8::Value>& info) {
     return;
   }
   v8::Local<v8::Object> obj = info[0]->ToObject();
-  // v8::Local<v8::Object> *objP = (v8::Local<v8::Object>*)malloc(sizeof(v8::Local<v8::Object>));
+  // v8::Local<v8::Object> *objP;
+  // objP = (v8::Local<v8::Object>*)malloc(sizeof(v8::Local<v8::Object>));
   // *objP = obj;
   char objAddrStr[20]; //max 0x8000000000000000
   sprintf( objAddrStr,"%p",&obj);
