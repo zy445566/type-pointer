@@ -3,6 +3,9 @@
         "algorithm": "cpp",
         "chrono": "cpp",
         "limits": "cpp",
-        "ratio": "cpp"
+        "ratio": "cpp",
+        "iosfwd": "cpp",
+        "memory": "cpp",
+        "*.ipp": "cpp"
     }
 }
