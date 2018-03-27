@@ -59,5 +59,6 @@ typings/
 
 # project
 build/
+shareMem
 
 

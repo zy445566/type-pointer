@@ -5,12 +5,13 @@ void getObjectAddr(const Nan::FunctionCallbackInfo<v8::Value>& info) {
     Nan::ThrowTypeError("Wrong number of arguments");
     return;
   }
-  v8::Local<v8::Object> obj = info[0]->ToObject();
-  // v8::Local<v8::Object> *objP;
-  // objP = (v8::Local<v8::Object>*)malloc(sizeof(v8::Local<v8::Object>));
-  // *objP = obj;
   char objAddrStr[20]; //max 0x8000000000000000
-  sprintf( objAddrStr,"%p",&obj);
+  v8::Local<v8::Object> obj = info[0]->ToObject();
+  v8::Local<v8::Object> *objP;
+  objP = (v8::Local<v8::Object>*)malloc(sizeof(v8::Local<v8::Object>));
+  *objP = obj;
+  sprintf( objAddrStr,"%p",objP);
+  // sprintf( objAddrStr,"%p",&obj);
   v8::Local<v8::String> v8ObjAddrStr = v8::String::NewFromUtf8(v8::Isolate::GetCurrent(), objAddrStr);
   info.GetReturnValue().Set(v8ObjAddrStr);
 }
