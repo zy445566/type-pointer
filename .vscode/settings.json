@@ -28,6 +28,7 @@
         "mman.h": "c",
         "typeinfo": "c",
         "initializer_list": "c",
-        "queue": "c"
+        "queue": "c",
+        "unistd.h": "c"
     }
 }
