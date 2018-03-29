@@ -1,8 +1,9 @@
 var addon = require('bindings')('addon.node')
 
-var obj1 = {a:1,b:2,c:()=>{return a+b;}};
-var objaddr1 = addon.getObjectAddr(obj1);
-var obj2 = addon.getObjectByAddr(parseInt(objaddr1,16));
-var objaddr2 = addon.getObjectAddr(obj2);
-console.log(obj1,objaddr1)
-console.log(obj2,objaddr2)
+var obj1 = {a:1,b:2,c:()=>{return a+b;},d:777};
+addon.typeFlush("/Users/noder/Documents/GitHub/type-pointer/data/shareMem",1024);
+var offset = addon.typeWrite("/Users/noder/Documents/GitHub/type-pointer/data/shareMem",1024,0,obj1);
+console.log(offset);
+// addon.typeClose("/Users/noder/Documents/GitHub/type-pointer/data/shareMem",1024);
+var obj2 = addon.typeRead("/Users/noder/Documents/GitHub/type-pointer/data/shareMem",1024,0);
+console.log(obj2);
