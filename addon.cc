@@ -143,6 +143,7 @@ void typeWrite(const Nan::FunctionCallbackInfo<v8::Value>& info) {
   uint32_t offset = info[2]->Uint32Value();
   v8::Local<v8::Object> obj = info[3]->ToObject();
   uint32_t writeOffset = writeMem(path,size,offset,obj);
+  // v8::External
   v8::Local<v8::Uint32> resOffset= Nan::New(writeOffset);
   info.GetReturnValue().Set(resOffset);
 }
