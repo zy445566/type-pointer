@@ -1,9 +1,12 @@
-var addon = require('bindings')('addon.node')
+var addon = require('bindings')('addon.node');
+var path = require("path");
 
-var obj1 = {a:1,b:2,c:()=>{return a+b;},d:777};
-addon.typeFlush("/Users/noder/Documents/GitHub/type-pointer/data/shareMem",1024);
-var offset = addon.typeWrite("/Users/noder/Documents/GitHub/type-pointer/data/shareMem",1024,0,obj1);
+var obj1 = {a:1,b:2,c:()=>{return a+b;}};
+var path = path.join(__dirname,"/data/shareMem");
+console.log(path);
+addon.typeFlush(path,1024);
+var offset = addon.typeWrite(path,1024,0,obj1);
 console.log(offset);
-// addon.typeClose("/Users/noder/Documents/GitHub/type-pointer/data/shareMem",1024);
-var obj2 = addon.typeRead("/Users/noder/Documents/GitHub/type-pointer/data/shareMem",1024,0);
+addon.typeClose(path,1024);
+var obj2 = addon.typeRead(path,1024,0);
 console.log(obj2);

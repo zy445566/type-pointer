@@ -35,9 +35,9 @@ void * getClosePMap(const char* path,long unsigned int size)
     return p_map;
 }
 
-v8::Local<v8::Object> *  getPMapByOffset(const char* path,long unsigned int size,long unsigned int offset)
+v8::Local<v8::Value> *  getPMapByOffset(const char* path,long unsigned int size,long unsigned int offset)
 {
-    v8::Local<v8::Object> * p_map = (v8::Local<v8::Object> *)getPMap(path,size);
+    v8::Local<v8::Value> * p_map = (v8::Local<v8::Value> *)getPMap(path,size);
     p_map += offset;
     return p_map;
 }
@@ -53,16 +53,16 @@ void * closeMem(const char* path,long unsigned int size)
     return getClosePMap(path,size);
 }
 
-long unsigned int writeMem(const char* path,long unsigned int size,long unsigned int offset,v8::Local<v8::Object> obj)
+long unsigned int writeMem(const char* path,long unsigned int size,long unsigned int offset,v8::Local<v8::Value> obj)
 {
-    v8::Local<v8::Object> * p_map = getPMapByOffset(path,size,offset);
-    memcpy(p_map,&obj,sizeof(v8::Local<v8::Object>));
+    v8::Local<v8::Value> * p_map = getPMapByOffset(path,size,offset);
+    memcpy(p_map,&obj,sizeof(v8::Local<v8::Value>));
     return offset;
 }
 
-v8::Local<v8::Object> readMem(const char* path,long unsigned int size,long unsigned int offset)
+v8::Local<v8::Value> readMem(const char* path,long unsigned int size,long unsigned int offset)
 {
-    v8::Local<v8::Object>  * p_map = getPMapByOffset(path,size,offset);
+    v8::Local<v8::Value>  * p_map = getPMapByOffset(path,size,offset);
     return *p_map;
 }
 
@@ -141,8 +141,8 @@ void typeWrite(const Nan::FunctionCallbackInfo<v8::Value>& info) {
   const char* path= ToCString(str0);
   uint32_t size = info[1]->Uint32Value();
   uint32_t offset = info[2]->Uint32Value();
-  v8::Local<v8::Object> obj = info[3]->ToObject();
-  uint32_t writeOffset = writeMem(path,size,offset,obj);
+  // v8::Local<v8::Value> obj = info[3]->ToObject();
+  uint32_t writeOffset = writeMem(path,size,offset,info[3]);
   // v8::External
   v8::Local<v8::Uint32> resOffset= Nan::New(writeOffset);
   info.GetReturnValue().Set(resOffset);
@@ -169,7 +169,7 @@ void typeRead(const Nan::FunctionCallbackInfo<v8::Value>& info) {
   const char* path= ToCString(str0);
   uint32_t size = info[1]->Uint32Value();
   uint32_t offset = info[2]->Uint32Value();
-  v8::Local<v8::Object> obj = readMem(path,size,offset);
+  v8::Local<v8::Value> obj = readMem(path,size,offset);
   info.GetReturnValue().Set(obj);
 }
 
