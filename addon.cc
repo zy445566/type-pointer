@@ -200,7 +200,6 @@ void typeReset(const Nan::FunctionCallbackInfo<v8::Value>& info) {
     Nan::ThrowTypeError("offset must be number");
     return;
   }
-  v8::V8::SetArrayBufferAllocator(new MallocArrayBufferAllocator);
   v8::String::Utf8Value str0(info[0]->ToString());
   const char* path= ToCString(str0);
   uint32_t size = info[1]->Uint32Value();
