@@ -9,8 +9,10 @@ var offset = addon.typeWrite(path,1024,0,obj1);
 console.log(offset);
 addon.typeClose(path,1024);
 var obj2 = addon.typeRead(path,1024,0);
+obj1.d = 333;
 setInterval(()=>{
     console.log(obj2);
+    obj2 = addon.typeRead(path,1024,0);
     // addon.typeReset(path,1024,0);
 },1000)
 
