@@ -29,6 +29,8 @@
         "typeinfo": "c",
         "initializer_list": "c",
         "queue": "c",
-        "unistd.h": "c"
+        "unistd.h": "c",
+        "__locale": "cpp",
+        "__string": "cpp"
     }
 }
