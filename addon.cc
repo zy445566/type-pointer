@@ -8,11 +8,44 @@
 
 // class MallocArrayBufferAllocator : public v8::ArrayBuffer::Allocator {
 // public:
-//   virtual void* Allocate(size_t length) { return malloc(length); }
-//   virtual void* AllocateUninitialized(size_t length) { return malloc(length); }
-//   virtual void Free(void* data, size_t length) { free(data); }
+//   virtual void* Allocate(size_t length) { 
+//     void* p =  malloc(length);
+//     printf("Allocate:%p\n",p);
+//     return p;
+//   }
+//   virtual void* AllocateUninitialized(size_t length) { 
+//     void* p =  malloc(length);
+//     printf("AllocateUninitialized:%p\n",p);
+//     return p;
+//   }
+//   virtual void Free(void* data, size_t length) {
+//     printf("Free:%p\n",data);
+//     free(data);
+//   }
 // };
 // v8::V8::SetArrayBufferAllocator(new MallocArrayBufferAllocator);
+
+
+// void test(const Nan::FunctionCallbackInfo<v8::Value>& info)
+// {
+//   MallocArrayBufferAllocator* allocator = new MallocArrayBufferAllocator;
+//   v8::Isolate::CreateParams params= v8::Isolate::CreateParams();
+//   params.array_buffer_allocator = allocator;
+//   v8::Isolate* isolate = v8::Isolate::New(params);
+//   isolate->Enter();
+//   v8::Locker locker(isolate);
+//   v8::Isolate::Scope isolate_scope(isolate);
+//   v8::HandleScope handle_scope(isolate);
+//   // v8::Local<Context> context = v8::Local<Context>::New(isolate, context_);
+//   // v8::Context::Scope context_scope(context);
+//   // v8::HandleScope scope(isolate);
+//   // Local<Context> context = Context::New(is);
+//   printf("is,before:%lu\n",isolate->NumberOfHeapSpaces());
+//   Nan::Persistent<v8::Object> persistent(Nan::To<v8::Object>(info[0]).ToLocalChecked());
+//   printf("is,after:%lu\n",isolate->NumberOfHeapSpaces());
+//   isolate->Exit();
+//   info.GetReturnValue().Set(Nan::EmptyString());
+// }
 
 
 void * getEmptyPMap(const char* path,long unsigned int size)
