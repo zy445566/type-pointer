@@ -8,16 +8,16 @@ var addr = typePointer.mallocValueAddr(obj1);
 assert(parseInt(addr,16)>0,"mallocValueAddr failed");
 //----------------readValueByAddr-----------------
 var obj2 = typePointer.readValueByAddr(addr);
-assert.deepEqual(obj2, obj1, "readValueByAddr failed")
+assert.deepEqual(obj2, obj1, "readValueByAddr failed");
 var obj3 = {d:4};
 //----------------writeValueByAddr-----------------
 typePointer.writeValueByAddr(addr,obj3);
 var obj4 = typePointer.readValueByAddr(addr);
-assert.deepEqual(obj4, obj3, "writeValueByAddr failed")
+assert.deepEqual(obj4, obj3, "writeValueByAddr failed");
 //----------------freeValueByAddr-----------------
 typePointer.freeValueByAddr(addr);
 var obj5 = typePointer.readValueByAddr(addr);
-assert.deepEqual(obj5, undefined, "freeValueByAddr failed")
+assert.deepEqual(obj5, undefined, "freeValueByAddr failed");
 
 
 
