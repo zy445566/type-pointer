@@ -1,8 +1,24 @@
-var addon = require('bindings')('addon.node')
+var addon = require('bindings')('addon.node');
+class TypePointer{
+    mallocValueAddr(value)
+    {
+        return addon.mallocValueAddr(value);
+    }
 
-var obj1 = {a:1,b:2,c:()=>{return a+b;}};
-var objaddr1 = addon.getObjectAddr(obj1);
-var obj2 = addon.getObjectByAddr(parseInt(objaddr1,16));
-var objaddr2 = addon.getObjectAddr(obj2);
-console.log(obj1,objaddr1)
-console.log(obj2,objaddr2)
+    readValueByAddr(addr)
+    {
+        return addon.readValueByAddr(parseInt(addr,16));
+    }
+
+    writeValueByAddr(addr,value)
+    {
+        return addon.writeValueByAddr(parseInt(addr,16),value);
+    }
+
+    freeValueByAddr(addr)
+    {
+        return addon.freeValueByAddr(parseInt(addr,16));
+    }
+}
+
+module.exports = TypePointer;
