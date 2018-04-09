@@ -1,6 +1,6 @@
 {
   "name": "type-pointer",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "nodejs pointer",
   "main": "index.js",
   "scripts": {
